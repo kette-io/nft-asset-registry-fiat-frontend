@@ -4,9 +4,7 @@ import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -28,7 +26,7 @@ import work5 from "assets/img/examples/clem-onojegaw.jpg";
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 
 class ProfilePage extends React.Component {
-  
+
   constructor(props) {
     super(props)
 
@@ -56,8 +54,8 @@ class ProfilePage extends React.Component {
       dataUrlReader.readAsDataURL(file)
     }
   }
-  
-  
+
+
   render() {
     const { classes, ...rest } = this.props;
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
@@ -65,139 +63,138 @@ class ProfilePage extends React.Component {
       <div>
         <Header
           color="white"
-          brand="Bike Information"
+          brand="KETTE asset registry"
           rightLinks={<HeaderLinks />}
           {...rest}
         />
-        <div className={classes.main}>
-          <div>
-            <div className={classes.container}>
-              <GridContainer justify="center">
-                <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                  <NavPills
-                    alignCenter
-                    color="primary"
-                    tabs={[
-                      {
-                        tabButton: "Bike information",
-                        tabIcon: Camera,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={10}>
-                              <CustomInput
-                                inputProps={{
-                                  onChange: (e) => console.log(e.target.value)
-                                }}
-                                labelText="Frame number"
-                                id="frameNumber"
-                                formControlProps={{
-                                  fullWidth: true
-                                }}
-                              />
-                              <CustomInput
-                                labelText="Description"
-                                id="desc"
-                                formControlProps={{
-                                  fullWidth: true
-                                }}
-                              />
-                              <label>
-                                Picture of your Bike
+        <div className={classes.test}>
+          <div className={classNames(classes.main, classes.mainRaised)}>
+            <div>
+              <div className={classes.container}>
+                <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+                    <NavPills
+                      alignCenter
+                      color="danger"
+                      tabs={[
+                        {
+                          tabButton: "Bike information",
+                          tabContent: (
+                            <GridContainer justify="center">
+                              <GridItem xs={12} sm={12} md={10}>
+                                <CustomInput
+                                  inputProps={{
+                                    onChange: (e) => console.log(e.target.value)
+                                  }}
+                                  labelText="Frame number"
+                                  id="frameNumber"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
+                                />
+                                <CustomInput
+                                  labelText="Description"
+                                  id="desc"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
+                                />
+                                <label>
+                                  Picture of your Bike
                               </label>
-                              <div className="control">
-                                <input
-                                  type="file"
-                                  className="input"
-                                  onChange={this.onImageChange.bind(this)} />
-                              </div>
-                              <img
-                                alt="..."
-                                src={this.state.image}
-                                className={navImageClasses}
-                              />
-                              <Button>next</Button>
-                            </GridItem>
-                          </GridContainer>
-                        )
-                      },
-                      {
-                        tabButton: "Ethereum Address",
-                        tabIcon: Palette,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work1}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work2}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work3}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work4}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work5}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        )
-                      },
-                      {
-                        tabButton: "Check out",
-                        tabIcon: Favorite,
-                        tabContent: (
-                          <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work4}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={studio3}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                            <GridItem xs={12} sm={12} md={4}>
-                              <img
-                                alt="..."
-                                src={work2}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={work1}
-                                className={navImageClasses}
-                              />
-                              <img
-                                alt="..."
-                                src={studio1}
-                                className={navImageClasses}
-                              />
-                            </GridItem>
-                          </GridContainer>
-                        )
-                      }
-                    ]}
-                  />
-                </GridItem>
-              </GridContainer>
+                                <div className="control">
+                                  <input
+                                    type="file"
+                                    className="input"
+                                    onChange={this.onImageChange.bind(this)} />
+                                </div>
+                                <img
+                                  alt="..."
+                                  src={this.state.image}
+                                  className={navImageClasses}
+                                />
+                                <Button>next</Button>
+                              </GridItem>
+                            </GridContainer>
+                          )
+                        },
+                        {
+                          tabButton: "Ethereum Address",
+                          tabContent: (
+                            <GridContainer justify="center">
+                              <GridItem xs={12} sm={12} md={4}>
+                                <img
+                                  alt="..."
+                                  src={work1}
+                                  className={navImageClasses}
+                                />
+                                <img
+                                  alt="..."
+                                  src={work2}
+                                  className={navImageClasses}
+                                />
+                                <img
+                                  alt="..."
+                                  src={work3}
+                                  className={navImageClasses}
+                                />
+                              </GridItem>
+                              <GridItem xs={12} sm={12} md={4}>
+                                <img
+                                  alt="..."
+                                  src={work4}
+                                  className={navImageClasses}
+                                />
+                                <img
+                                  alt="..."
+                                  src={work5}
+                                  className={navImageClasses}
+                                />
+                              </GridItem>
+                            </GridContainer>
+                          )
+                        },
+                        {
+                          tabButton: "Check out",
+                          tabContent: (
+                            <GridContainer justify="center">
+                              <GridItem xs={12} sm={12} md={4}>
+                                <img
+                                  alt="..."
+                                  src={work4}
+                                  className={navImageClasses}
+                                />
+                                <img
+                                  alt="..."
+                                  src={studio3}
+                                  className={navImageClasses}
+                                />
+                              </GridItem>
+                              <GridItem xs={12} sm={12} md={4}>
+                                <img
+                                  alt="..."
+                                  src={work2}
+                                  className={navImageClasses}
+                                />
+                                <img
+                                  alt="..."
+                                  src={work1}
+                                  className={navImageClasses}
+                                />
+                                <img
+                                  alt="..."
+                                  src={studio1}
+                                  className={navImageClasses}
+                                />
+                              </GridItem>
+                            </GridContainer>
+                          )
+                        }
+                      ]}
+                    />
+                  </GridItem>
+                </GridContainer>
+              </div>
             </div>
           </div>
         </div>

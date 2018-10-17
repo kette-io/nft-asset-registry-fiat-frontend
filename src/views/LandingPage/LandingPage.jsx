@@ -18,10 +18,6 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
 
 // Sections for this page
-import ProductSection from "./Sections/ProductSection.jsx";
-import TeamSection from "./Sections/TeamSection.jsx";
-import WorkSection from "./Sections/WorkSection.jsx";
-
 const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
@@ -32,13 +28,9 @@ class LandingPage extends React.Component {
         <Header
           color="transparent"
           routes={dashboardRoutes}
-          brand="Material Kit React"
+          brand="KETTE asset registry"
           rightLinks={<HeaderLinks />}
           fixed
-          changeColorOnScroll={{
-            height: 400,
-            color: "white"
-          }}
           {...rest}
         />
         <Parallax filter image={require("assets/img/bike-bg.jpg")}>
