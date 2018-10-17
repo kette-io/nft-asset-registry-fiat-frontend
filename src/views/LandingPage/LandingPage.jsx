@@ -3,7 +3,7 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import { Link } from "react-router-dom";
 // @material-ui/icons
 
 // core components
@@ -47,22 +47,21 @@ class LandingPage extends React.Component {
               <GridItem xs={12} sm={12} md={6}>
                 <h1 className={classes.title}>KETTE bicycle registry.</h1>
                 <h4>
-                KETTE is the <strong> global decentralized asset registry</strong>. 
-                Register your bike. From now on you can always proof 
-                that you are the owner of your most valuable asset.
+                  KETTE is the <strong> global decentralized asset registry</strong>.
+                  Register your bike. From now on you can always proof
+                  that you are the owner of your most valuable asset.
                 </h4>
                 <br />
-                <Button 
-                  color="danger" 
-                  round
-                  href ="/profile-page">
-                Register now.
+                <Link to={"/profile-page"} className={classes.link}>
+                  <Button color="danger" size="lg" round>
+                    Register now.
                 </Button>
+                </Link>
               </GridItem>
             </GridContainer>
           </div>
         </Parallax>
-        
+
         <Footer />
       </div>
     );
