@@ -15,6 +15,9 @@ import NavPills from "components/NavPills/NavPills.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
+import { Elements, StripeProvider } from "react-stripe-elements";
+import BillingForm from "./BillingForm.jsx";
+
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 
 class ProfilePage extends React.Component {
@@ -24,7 +27,7 @@ class ProfilePage extends React.Component {
 
     this.state = {
       image: '',
-      activeTab : 0
+      activeTab: 0
     }
   }
 
@@ -76,7 +79,7 @@ class ProfilePage extends React.Component {
                           tabButton: "Bike information",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={10}>
+                              <GridItem xs={12} sm={12} md={6}>
                                 <CustomInput
                                   inputProps={{
                                     onChange: (e) => console.log(e.target.value)
@@ -108,10 +111,7 @@ class ProfilePage extends React.Component {
                                   src={this.state.image}
                                   className={navImageClasses}
                                 />
-                                <Button
-                                  onClick={(e) => this.setState({ activeTab : 1 })}>
-                                  next
-                                </Button>
+
                               </GridItem>
                             </GridContainer>
                           )
@@ -120,7 +120,7 @@ class ProfilePage extends React.Component {
                           tabButton: "Ethereum Address",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={10}>
+                              <GridItem xs={12} sm={12} md={8}>
                                 <CustomInput
                                   inputProps={{
                                     onChange: (e) => console.log(e.target.value)
@@ -139,15 +139,36 @@ class ProfilePage extends React.Component {
                           tabButton: "Check out",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={10}>
-
+                              <GridItem xs={12} sm={12} md={8}>
+                              <CustomInput
+                                  inputProps={{
+                                    onChange: (e) => console.log(e.target.value)
+                                  }}
+                                  labelText="Card Holders Name"
+                                  id="cardHolderName"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
+                                />
+                                <StripeProvider apiKey={"pk_test_K8n65a8M9t8H5YGy7klWTsDs"}>
+                                  <Elements>
+                                    <BillingForm price={10}/>
+                                  </Elements>
+                                </StripeProvider>
                               </GridItem>
-
                             </GridContainer>
                           )
                         }
                       ]}
                     />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+                    <Button
+                      onClick={(e) => this.setState({ activeTab: this.state.activeTab < 2 ? this.state.activeTab + 1 : 0 })}>
+                      next
+                 </Button>
                   </GridItem>
                 </GridContainer>
               </div>
