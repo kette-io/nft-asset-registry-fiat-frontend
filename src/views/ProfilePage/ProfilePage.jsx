@@ -15,12 +15,11 @@ import NavPills from "components/NavPills/NavPills.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
-import { Elements, StripeProvider } from "react-stripe-elements";
-import BillingForm from "./BillingForm.jsx";
-
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 import ethUtil from "ethereumjs-util";
 import CustomLabel from "../../components/CustomInput/CustomLabel.jsx";
+
+import { CardElement, injectStripe } from "react-stripe-elements";
 
 class ProfilePage extends React.Component {
 
@@ -32,38 +31,42 @@ class ProfilePage extends React.Component {
       activeTab: 0,
       description: '',
       uniqueId: '',
-      imageBuffer: undefined,
     }
   }
 
   validate() {
-    if (this.state.activeTab == 0) {
+    if (this.state.activeTab === 0) {
       return this.state.description !== "" &&
         this.state.description.length < 50 &&
         this.state.uniqueId !== "" &&
         this.state.imageBuffer
-    } else if (this.state.activeTab == 1) {
+    } else if (this.state.activeTab === 1) {
       return ethUtil.isValidAddress(this.state.ethereumAddress);
-    }else if (this.state.activeTab == 2) {
-      return this.state.holdersName !== "";
+    } else if (this.state.activeTab === 2) {
+      return this.state.holdersName !== "" &&
+        this.state.cardComplete
     }
   }
 
-  onNextClicked(event) {
-    if (this.state.activeTab == 0) {
+  async onNextClicked(event) {
+    if (this.state.activeTab === 0) {
 
       this.setState({ activeTab: 1 })
     }
-    else if (this.state.activeTab == 1) {
+    else if (this.state.activeTab === 1) {
       this.setState({ activeTab: 2 })
+    } else if (this.state.activeTab === 2) {
+      const { token, error } = await this.props.stripe.createToken({ name: this.state.holdersName });
+      console.log(token);
+      console.log(error);
     }
 
   }
 
   onPreviousClicked(event) {
-    if (this.state.activeTab == 2) {
+    if (this.state.activeTab === 2) {
       this.setState({ activeTab: 1 })
-    } else if (this.state.activeTab == 1) {
+    } else if (this.state.activeTab === 1) {
       this.setState({ activeTab: 0 })
     }
 
@@ -120,7 +123,7 @@ class ProfilePage extends React.Component {
                               <GridItem xs={12} sm={12} md={6}>
                                 <CustomInput
                                   inputProps={{
-                                    onChange: (e) => this.setState({ uniqueId : e.target.value})
+                                    onChange: (e) => this.setState({ uniqueId: e.target.value })
                                   }}
                                   labelText="Frame number"
                                   id="frameNumber"
@@ -132,7 +135,7 @@ class ProfilePage extends React.Component {
                                   labelText="Description"
                                   id="desc"
                                   inputProps={{
-                                    onChange: (e) => this.setState({ description : e.target.value})
+                                    onChange: (e) => this.setState({ description: e.target.value })
                                   }}
                                   formControlProps={{
                                     fullWidth: true
@@ -169,7 +172,7 @@ class ProfilePage extends React.Component {
                               <GridItem xs={12} sm={12} md={8}>
                                 <CustomInput
                                   inputProps={{
-                                    onChange: (e) => this.setState({ ethereumAddress : e.target.value})
+                                    onChange: (e) => this.setState({ ethereumAddress: e.target.value })
                                   }}
                                   labelText="Ethereum Address"
                                   id="ethAddress"
@@ -188,7 +191,7 @@ class ProfilePage extends React.Component {
                               <GridItem xs={12} sm={12} md={8}>
                                 <CustomInput
                                   inputProps={{
-                                    onChange: (e) => this.setState({ holdersName : e.target.value})
+                                    onChange: (e) => this.setState({ holdersName: e.target.value })
                                   }}
                                   labelText="Card Holders Name"
                                   id="cardHolderName"
@@ -196,11 +199,9 @@ class ProfilePage extends React.Component {
                                     fullWidth: true
                                   }}
                                 />
-                                <StripeProvider apiKey={"pk_test_K8n65a8M9t8H5YGy7klWTsDs"}>
-                                  <Elements>
-                                    <BillingForm />
-                                  </Elements>
-                                </StripeProvider>
+                                <CardElement
+                                  onChange={(e) => this.setState({ cardComplete: e.complete })}
+                                />
                               </GridItem>
                             </GridContainer>
                           )
@@ -236,4 +237,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default withStyles(profilePageStyle)(ProfilePage);
+export default injectStripe(withStyles(profilePageStyle)(ProfilePage));
