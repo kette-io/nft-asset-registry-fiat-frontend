@@ -19,6 +19,8 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./BillingForm.jsx";
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
+import ethUtil from "ethereumjs-util";
+import CustomLabel from "../../components/CustomInput/CustomLabel.jsx";
 
 class ProfilePage extends React.Component {
 
@@ -27,8 +29,27 @@ class ProfilePage extends React.Component {
 
     this.state = {
       image: '',
-      activeTab: 0
+      activeTab: 0,
+      description: '',
+      uniqueId: '',
+      imageBuffer: undefined
     }
+  }
+
+  validate() {
+    const isValidEthereumAddress = ethUtil.isValidAddress(this.state.ethereumAddress);
+    return (
+      this.state.description !== "" &&
+      this.state.description.length < 50 &&
+      this.state.uniqueId !== "" &&
+      this.state.imageBuffer &&
+      isValidEthereumAddress
+    )
+  }
+
+  onNextClicked(event){
+    console.log("clicked")
+    this.setState({ activeTab: this.state.activeTab < 2 ? this.state.activeTab + 1 : 0 })
   }
 
   onImageChange(event) {
@@ -97,10 +118,15 @@ class ProfilePage extends React.Component {
                                     fullWidth: true
                                   }}
                                 />
-                                <label>
-                                  Picture of your Bike
-                              </label>
-                                <div className="control">
+                                <CustomLabel
+                                labelText="Image"
+                                  id="thisthat"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}>
+
+                                </CustomLabel><br/><br/>
+                                <div  align="left">
                                   <input
                                     type="file"
                                     className="input"
@@ -140,7 +166,7 @@ class ProfilePage extends React.Component {
                           tabContent: (
                             <GridContainer justify="center">
                               <GridItem xs={12} sm={12} md={8}>
-                              <CustomInput
+                                <CustomInput
                                   inputProps={{
                                     onChange: (e) => console.log(e.target.value)
                                   }}
@@ -152,7 +178,7 @@ class ProfilePage extends React.Component {
                                 />
                                 <StripeProvider apiKey={"pk_test_K8n65a8M9t8H5YGy7klWTsDs"}>
                                   <Elements>
-                                    <BillingForm price={10}/>
+                                    <BillingForm />
                                   </Elements>
                                 </StripeProvider>
                               </GridItem>
@@ -166,7 +192,9 @@ class ProfilePage extends React.Component {
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                     <Button
-                      onClick={(e) => this.setState({ activeTab: this.state.activeTab < 2 ? this.state.activeTab + 1 : 0 })}>
+                      onClick={this.onNextClicked.bind(this)}
+                      color="danger"
+                    >
                       next
                  </Button>
                   </GridItem>
