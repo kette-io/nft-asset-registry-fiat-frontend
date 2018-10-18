@@ -29,6 +29,11 @@ class NavPills extends React.Component {
   handleChangeIndex = index => {
     this.setState({ active: index });
   };
+
+  componentWillReceiveProps(props) {
+    this.setState({ active: props.active })
+  }
+
   render() {
     const {
       classes,
@@ -103,11 +108,11 @@ class NavPills extends React.Component {
         <GridItem {...horizontal.contentGrid}>{tabContent}</GridItem>
       </GridContainer>
     ) : (
-      <div>
-        {tabButtons}
-        {tabContent}
-      </div>
-    );
+        <div>
+          {tabButtons}
+          {tabContent}
+        </div>
+      );
   }
 }
 

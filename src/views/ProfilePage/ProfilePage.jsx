@@ -15,14 +15,6 @@ import NavPills from "components/NavPills/NavPills.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
-
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 
 class ProfilePage extends React.Component {
@@ -31,7 +23,8 @@ class ProfilePage extends React.Component {
     super(props)
 
     this.state = {
-      image: ''
+      image: '',
+      activeTab : 0
     }
   }
 
@@ -59,6 +52,7 @@ class ProfilePage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+    const tab = this.state.activeTab;
     return (
       <div>
         <Header
@@ -74,6 +68,7 @@ class ProfilePage extends React.Component {
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                     <NavPills
+                      active={tab}
                       alignCenter
                       color="danger"
                       tabs={[
@@ -113,7 +108,10 @@ class ProfilePage extends React.Component {
                                   src={this.state.image}
                                   className={navImageClasses}
                                 />
-                                <Button>next</Button>
+                                <Button
+                                  onClick={(e) => this.setState({ activeTab : 1 })}>
+                                  next
+                                </Button>
                               </GridItem>
                             </GridContainer>
                           )
@@ -122,33 +120,16 @@ class ProfilePage extends React.Component {
                           tabButton: "Ethereum Address",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={4}>
-                                <img
-                                  alt="..."
-                                  src={work1}
-                                  className={navImageClasses}
-                                />
-                                <img
-                                  alt="..."
-                                  src={work2}
-                                  className={navImageClasses}
-                                />
-                                <img
-                                  alt="..."
-                                  src={work3}
-                                  className={navImageClasses}
-                                />
-                              </GridItem>
-                              <GridItem xs={12} sm={12} md={4}>
-                                <img
-                                  alt="..."
-                                  src={work4}
-                                  className={navImageClasses}
-                                />
-                                <img
-                                  alt="..."
-                                  src={work5}
-                                  className={navImageClasses}
+                              <GridItem xs={12} sm={12} md={10}>
+                                <CustomInput
+                                  inputProps={{
+                                    onChange: (e) => console.log(e.target.value)
+                                  }}
+                                  labelText="Ethereum Address"
+                                  id="ethAddress"
+                                  formControlProps={{
+                                    fullWidth: true
+                                  }}
                                 />
                               </GridItem>
                             </GridContainer>
@@ -158,35 +139,10 @@ class ProfilePage extends React.Component {
                           tabButton: "Check out",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={4}>
-                                <img
-                                  alt="..."
-                                  src={work4}
-                                  className={navImageClasses}
-                                />
-                                <img
-                                  alt="..."
-                                  src={studio3}
-                                  className={navImageClasses}
-                                />
+                              <GridItem xs={12} sm={12} md={10}>
+
                               </GridItem>
-                              <GridItem xs={12} sm={12} md={4}>
-                                <img
-                                  alt="..."
-                                  src={work2}
-                                  className={navImageClasses}
-                                />
-                                <img
-                                  alt="..."
-                                  src={work1}
-                                  className={navImageClasses}
-                                />
-                                <img
-                                  alt="..."
-                                  src={studio1}
-                                  className={navImageClasses}
-                                />
-                              </GridItem>
+
                             </GridContainer>
                           )
                         }
