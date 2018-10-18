@@ -32,24 +32,41 @@ class ProfilePage extends React.Component {
       activeTab: 0,
       description: '',
       uniqueId: '',
-      imageBuffer: undefined
+      imageBuffer: undefined,
     }
   }
 
   validate() {
-    const isValidEthereumAddress = ethUtil.isValidAddress(this.state.ethereumAddress);
-    return (
-      this.state.description !== "" &&
-      this.state.description.length < 50 &&
-      this.state.uniqueId !== "" &&
-      this.state.imageBuffer &&
-      isValidEthereumAddress
-    )
+    if (this.state.activeTab == 0) {
+      return this.state.description !== "" &&
+        this.state.description.length < 50 &&
+        this.state.uniqueId !== "" &&
+        this.state.imageBuffer
+    } else if (this.state.activeTab == 1) {
+      return ethUtil.isValidAddress(this.state.ethereumAddress);
+    }else if (this.state.activeTab == 2) {
+      return this.state.holdersName !== "";
+    }
   }
 
-  onNextClicked(event){
-    console.log("clicked")
-    this.setState({ activeTab: this.state.activeTab < 2 ? this.state.activeTab + 1 : 0 })
+  onNextClicked(event) {
+    if (this.state.activeTab == 0) {
+
+      this.setState({ activeTab: 1 })
+    }
+    else if (this.state.activeTab == 1) {
+      this.setState({ activeTab: 2 })
+    }
+
+  }
+
+  onPreviousClicked(event) {
+    if (this.state.activeTab == 2) {
+      this.setState({ activeTab: 1 })
+    } else if (this.state.activeTab == 1) {
+      this.setState({ activeTab: 0 })
+    }
+
   }
 
   onImageChange(event) {
@@ -103,7 +120,7 @@ class ProfilePage extends React.Component {
                               <GridItem xs={12} sm={12} md={6}>
                                 <CustomInput
                                   inputProps={{
-                                    onChange: (e) => console.log(e.target.value)
+                                    onChange: (e) => this.setState({ uniqueId : e.target.value})
                                   }}
                                   labelText="Frame number"
                                   id="frameNumber"
@@ -114,19 +131,22 @@ class ProfilePage extends React.Component {
                                 <CustomInput
                                   labelText="Description"
                                   id="desc"
+                                  inputProps={{
+                                    onChange: (e) => this.setState({ description : e.target.value})
+                                  }}
                                   formControlProps={{
                                     fullWidth: true
                                   }}
                                 />
                                 <CustomLabel
-                                labelText="Image"
+                                  labelText="Image"
                                   id="thisthat"
                                   formControlProps={{
                                     fullWidth: true
                                   }}>
 
-                                </CustomLabel><br/><br/>
-                                <div  align="left">
+                                </CustomLabel><br /><br />
+                                <div align="left">
                                   <input
                                     type="file"
                                     className="input"
@@ -149,7 +169,7 @@ class ProfilePage extends React.Component {
                               <GridItem xs={12} sm={12} md={8}>
                                 <CustomInput
                                   inputProps={{
-                                    onChange: (e) => console.log(e.target.value)
+                                    onChange: (e) => this.setState({ ethereumAddress : e.target.value})
                                   }}
                                   labelText="Ethereum Address"
                                   id="ethAddress"
@@ -168,7 +188,7 @@ class ProfilePage extends React.Component {
                               <GridItem xs={12} sm={12} md={8}>
                                 <CustomInput
                                   inputProps={{
-                                    onChange: (e) => console.log(e.target.value)
+                                    onChange: (e) => this.setState({ holdersName : e.target.value})
                                   }}
                                   labelText="Card Holders Name"
                                   id="cardHolderName"
@@ -192,8 +212,15 @@ class ProfilePage extends React.Component {
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                     <Button
+                      onClick={this.onPreviousClicked.bind(this)}
+                      color="danger"
+                    >
+                      prev.
+                 </Button>
+                    <Button
                       onClick={this.onNextClicked.bind(this)}
                       color="danger"
+                      disabled={!this.validate()}
                     >
                       next
                  </Button>
