@@ -22,6 +22,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import registrationService from './services/registrationService.js'
 import ipfsService from './services/ipfsService.js'
+import priceService from './services/priceService.js'
 
 class ProfilePage extends React.Component {
 
@@ -35,7 +36,8 @@ class ProfilePage extends React.Component {
       uniqueId: '',
       ethereumAddress: '',
       cardHolderName: '',
-      ketteSecret: ''
+      ketteSecret: '',
+      price: 'loading'
     }
   }
 
@@ -73,6 +75,11 @@ class ProfilePage extends React.Component {
     }
   }
 
+  async componentDidMount() {
+    const price = await priceService();
+    this.setState({ price: Math.round(price * 100) / 100 })
+  }
+
   async onNextClicked(event) {
     if (this.state.activeTab === 0) {
       this.setState({ activeTab: 1 })
@@ -81,7 +88,7 @@ class ProfilePage extends React.Component {
       this.setState({ activeTab: 2 })
     } else if (this.state.activeTab === 2) {
       const { token } = await this.props.stripe.createToken({ name: this.state.cardHolderName });
-      this.setState({stripeToken : token})
+      this.setState({ stripeToken: token })
       await this.register();
     }
     window.scrollTo(0, 0)
@@ -231,7 +238,7 @@ class ProfilePage extends React.Component {
                                   variant="filled"
                                   margin="normal"
                                   label="Price"
-                                  value={0.79}
+                                  value={this.state.price}
                                   InputProps={{
                                     startAdornment: (
                                       <InputAdornment variant="filled" position="start">
@@ -250,7 +257,7 @@ class ProfilePage extends React.Component {
                                   margin="normal"
                                   variant="outlined"
                                 />
-                                
+
                               </GridItem>
                             </GridContainer>
                           )
@@ -267,7 +274,7 @@ class ProfilePage extends React.Component {
                     >
                       prev.
                    </Button>
-                   <Button
+                    <Button
                       onClick={this.onNextClicked.bind(this)}
                       color="danger"
                       disabled={!this.validate()}

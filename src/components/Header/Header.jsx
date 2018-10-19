@@ -74,6 +74,7 @@ class Header extends React.Component {
       [classes.fixed]: fixed
     });
     const brandComponent = <Button className={classes.title}>{brand}</Button>;
+    console.log(appBarClasses)
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
