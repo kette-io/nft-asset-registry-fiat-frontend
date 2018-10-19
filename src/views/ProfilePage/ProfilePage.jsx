@@ -4,22 +4,21 @@ import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
-
+import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import NavPills from "components/NavPills/NavPills.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 import ethUtil from "ethereumjs-util";
-import CustomLabel from "../../components/CustomInput/CustomLabel.jsx";
 
+import TextField from '@material-ui/core/TextField';
 import { CardElement, injectStripe } from "react-stripe-elements";
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 class ProfilePage extends React.Component {
 
@@ -31,6 +30,8 @@ class ProfilePage extends React.Component {
       activeTab: 0,
       description: '',
       uniqueId: '',
+      ethereumAddress: '',
+      cardHolderName: ''
     }
   }
 
@@ -43,7 +44,7 @@ class ProfilePage extends React.Component {
     } else if (this.state.activeTab === 1) {
       return ethUtil.isValidAddress(this.state.ethereumAddress);
     } else if (this.state.activeTab === 2) {
-      return this.state.holdersName !== "" &&
+      return this.state.cardHolderName !== "" &&
         this.state.cardComplete
     }
   }
@@ -56,11 +57,10 @@ class ProfilePage extends React.Component {
     else if (this.state.activeTab === 1) {
       this.setState({ activeTab: 2 })
     } else if (this.state.activeTab === 2) {
-      const { token, error } = await this.props.stripe.createToken({ name: this.state.holdersName });
+      const { token } = await this.props.stripe.createToken({ name: this.state.cardHolderName });
       console.log(token);
-      console.log(error);
     }
-
+    window.scrollTo(0, 0)
   }
 
   onPreviousClicked(event) {
@@ -71,6 +71,12 @@ class ProfilePage extends React.Component {
     }
 
   }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
 
   onImageChange(event) {
     if (event.target.files && event.target.files[0]) {
@@ -106,49 +112,40 @@ class ProfilePage extends React.Component {
           {...rest}
         />
         <div className={classes.test}>
-          <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classNames(classes.main)}>
             <div>
               <div className={classes.container}>
                 <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                    <NavPills
+                  <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>
+                    <CustomTabs
                       active={tab}
-                      alignCenter
-                      color="danger"
+                      plainTabs
+                      headerColor="danger"
                       tabs={[
                         {
-                          tabButton: "Bike information",
+                          tabName: "Bike information",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={6}>
-                                <CustomInput
-                                  inputProps={{
-                                    onChange: (e) => this.setState({ uniqueId: e.target.value })
-                                  }}
-                                  labelText="Frame number"
-                                  id="frameNumber"
-                                  formControlProps={{
-                                    fullWidth: true
-                                  }}
+                              <GridItem xs={12} sm={12} md={10}>
+                                <TextField
+                                  label="Frame Number"
+                                  className={classes.textField}
+                                  value={this.state.uniqueId}
+                                  fullWidth
+                                  onChange={this.handleChange('uniqueId')}
+                                  margin="normal"
+                                  variant="outlined"
                                 />
-                                <CustomInput
-                                  labelText="Description"
-                                  id="desc"
-                                  inputProps={{
-                                    onChange: (e) => this.setState({ description: e.target.value })
-                                  }}
-                                  formControlProps={{
-                                    fullWidth: true
-                                  }}
+                                <TextField
+                                  label="Description"
+                                  className={classes.textField}
+                                  value={this.state.description}
+                                  fullWidth
+                                  onChange={this.handleChange('description')}
+                                  margin="normal"
+                                  variant="outlined"
                                 />
-                                <CustomLabel
-                                  labelText="Image"
-                                  id="thisthat"
-                                  formControlProps={{
-                                    fullWidth: true
-                                  }}>
-
-                                </CustomLabel><br /><br />
+                                <h4 align="left">Image</h4>
                                 <div align="left">
                                   <input
                                     type="file"
@@ -160,48 +157,69 @@ class ProfilePage extends React.Component {
                                   src={this.state.image}
                                   className={navImageClasses}
                                 />
-
                               </GridItem>
                             </GridContainer>
                           )
                         },
                         {
-                          tabButton: "Ethereum Address",
+                          tabName: "Ethereum Address",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={8}>
-                                <CustomInput
-                                  inputProps={{
-                                    onChange: (e) => this.setState({ ethereumAddress: e.target.value })
-                                  }}
-                                  labelText="Ethereum Address"
-                                  id="ethAddress"
-                                  formControlProps={{
-                                    fullWidth: true
-                                  }}
+                              <GridItem xs={12} sm={12} md={10}>
+                                <TextField
+                                  label="Ethereum Address"
+                                  className={classes.textField}
+                                  value={this.state.ethereumAddress}
+                                  fullWidth
+                                  onChange={this.handleChange('ethereumAddress')}
+                                  margin="normal"
+                                  variant="outlined"
                                 />
                               </GridItem>
                             </GridContainer>
                           )
                         },
                         {
-                          tabButton: "Check out",
+                          tabName: "Check out",
                           tabContent: (
                             <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={8}>
-                                <CustomInput
-                                  inputProps={{
-                                    onChange: (e) => this.setState({ holdersName: e.target.value })
-                                  }}
-                                  labelText="Card Holders Name"
-                                  id="cardHolderName"
-                                  formControlProps={{
-                                    fullWidth: true
-                                  }}
+                              <GridItem xs={12} sm={12} md={10}>
+                                <TextField
+                                  label="Card holder's name"
+                                  className={classes.textField}
+                                  value={this.state.cardHolderName}
+                                  fullWidth
+                                  onChange={this.handleChange('cardHolderName')}
+                                  margin="normal"
+                                  variant="outlined"
                                 />
-                                <CardElement
-                                  onChange={(e) => this.setState({ cardComplete: e.complete })}
-                                />
+                                <div style={{ padding: '15px', border: '1px solid darkgrey', borderRadius: '3px' }}>
+                                  <CardElement
+                                    onChange={(e) => this.setState({ cardComplete: e.complete })}
+                                    style={{
+                                      base: {
+                                        fontSize: '18px',
+                                      }
+                                    }}
+                                  /></div>
+                                <GridItem xs={10}>
+                                  <TextField
+                                    id="filled-adornment-amount"
+                                    className={classNames(classes.margin, classes.textField)}
+                                    variant="filled"
+                                    margin="normal"
+                                    label="Price"
+                                    value={0.79}
+                                    InputProps={{
+                                      startAdornment: (
+                                        <InputAdornment variant="filled" position="start">
+                                          €
+                                      </InputAdornment>
+                                      ),
+                                      readOnly: true
+                                    }}
+                                  />
+                                </GridItem>
                               </GridItem>
                             </GridContainer>
                           )

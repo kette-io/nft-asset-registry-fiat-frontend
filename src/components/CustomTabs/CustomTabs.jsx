@@ -22,9 +22,13 @@ class CustomTabs extends React.Component {
   };
 
   handleChange = (event, value) => {
-    this.setState({ value });
+    //this.setState({ value });
   };
 
+  componentWillReceiveProps(props) {
+    this.setState({ value: props.active })
+  }
+  
   render() {
     const {
       classes,

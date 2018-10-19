@@ -1,6 +1,5 @@
 import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
@@ -17,8 +16,6 @@ import Parallax from "components/Parallax/Parallax.jsx";
 
 import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
 
-// Sections for this page
-const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
   render() {
@@ -26,11 +23,9 @@ class LandingPage extends React.Component {
     return (
       <div>
         <Header
-          color="transparent"
-          routes={dashboardRoutes}
+          color="dark"
           brand="KETTE asset registry"
           rightLinks={<HeaderLinks />}
-          fixed
           {...rest}
         />
         <Parallax filter image={require("assets/img/bike-bg.jpg")}>
@@ -53,7 +48,7 @@ class LandingPage extends React.Component {
             </GridContainer>
           </div>
         </Parallax>
-
+        
         <Footer />
       </div>
     );
