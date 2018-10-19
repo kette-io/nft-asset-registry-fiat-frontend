@@ -4,7 +4,7 @@ import classNames from "classnames";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+import NavPills from "components/NavPills/NavPills.jsx";
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -20,6 +20,9 @@ import TextField from '@material-ui/core/TextField';
 import { CardElement, injectStripe } from "react-stripe-elements";
 import InputAdornment from '@material-ui/core/InputAdornment';
 
+import registrationService from './services/registrationService.js'
+import ipfsService from './services/ipfsService.js'
+
 class ProfilePage extends React.Component {
 
   constructor(props) {
@@ -31,7 +34,28 @@ class ProfilePage extends React.Component {
       description: '',
       uniqueId: '',
       ethereumAddress: '',
-      cardHolderName: ''
+      cardHolderName: '',
+      ketteSecret: ''
+    }
+  }
+
+  async register() {
+
+    const ipfsHash = await ipfsService(this.state.imageBuffer);
+
+    try {
+      const txHash = await registrationService(
+        ipfsHash,
+        this.state.description,
+        this.state.uniqueId,
+        this.state.ethereumAddress,
+        this.state.stripeToken.id,
+        this.state.ketteSecret
+      )
+
+      console.log(txHash);
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -51,14 +75,14 @@ class ProfilePage extends React.Component {
 
   async onNextClicked(event) {
     if (this.state.activeTab === 0) {
-
       this.setState({ activeTab: 1 })
     }
     else if (this.state.activeTab === 1) {
       this.setState({ activeTab: 2 })
     } else if (this.state.activeTab === 2) {
       const { token } = await this.props.stripe.createToken({ name: this.state.cardHolderName });
-      console.log(token);
+      this.setState({stripeToken : token})
+      await this.register();
     }
     window.scrollTo(0, 0)
   }
@@ -102,7 +126,6 @@ class ProfilePage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
-    const tab = this.state.activeTab;
     return (
       <div>
         <Header
@@ -116,14 +139,14 @@ class ProfilePage extends React.Component {
             <div>
               <div className={classes.container}>
                 <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>
-                    <CustomTabs
-                      active={tab}
-                      plainTabs
-                      headerColor="danger"
+                  <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+                    <NavPills
+                      active={this.state.activeTab}
+                      color="danger"
+                      alignCenter
                       tabs={[
                         {
-                          tabName: "Bike information",
+                          tabButton: "Bike information",
                           tabContent: (
                             <GridContainer justify="center">
                               <GridItem xs={12} sm={12} md={10}>
@@ -162,7 +185,7 @@ class ProfilePage extends React.Component {
                           )
                         },
                         {
-                          tabName: "Ethereum Address",
+                          tabButton: "Ethereum Address",
                           tabContent: (
                             <GridContainer justify="center">
                               <GridItem xs={12} sm={12} md={10}>
@@ -180,9 +203,9 @@ class ProfilePage extends React.Component {
                           )
                         },
                         {
-                          tabName: "Check out",
+                          tabButton: "Check out",
                           tabContent: (
-                            <GridContainer justify="center">
+                            <GridContainer justify="flex-end">
                               <GridItem xs={12} sm={12} md={10}>
                                 <TextField
                                   label="Card holder's name"
@@ -202,24 +225,32 @@ class ProfilePage extends React.Component {
                                       }
                                     }}
                                   /></div>
-                                <GridItem xs={10}>
-                                  <TextField
-                                    id="filled-adornment-amount"
-                                    className={classNames(classes.margin, classes.textField)}
-                                    variant="filled"
-                                    margin="normal"
-                                    label="Price"
-                                    value={0.79}
-                                    InputProps={{
-                                      startAdornment: (
-                                        <InputAdornment variant="filled" position="start">
-                                          €
+                                <TextField
+                                  id="filled-adornment-amount"
+                                  className={classNames(classes.margin, classes.textField)}
+                                  variant="filled"
+                                  margin="normal"
+                                  label="Price"
+                                  value={0.79}
+                                  InputProps={{
+                                    startAdornment: (
+                                      <InputAdornment variant="filled" position="start">
+                                        €
                                       </InputAdornment>
-                                      ),
-                                      readOnly: true
-                                    }}
-                                  />
-                                </GridItem>
+                                    ),
+                                    readOnly: true
+                                  }}
+                                />
+                                <TextField
+                                  label="temporary secret"
+                                  className={classes.textField}
+                                  value={this.state.ketteSecret}
+                                  fullWidth
+                                  onChange={this.handleChange('ketteSecret')}
+                                  margin="normal"
+                                  variant="outlined"
+                                />
+                                
                               </GridItem>
                             </GridContainer>
                           )
@@ -235,14 +266,14 @@ class ProfilePage extends React.Component {
                       color="danger"
                     >
                       prev.
-                 </Button>
-                    <Button
+                   </Button>
+                   <Button
                       onClick={this.onNextClicked.bind(this)}
                       color="danger"
                       disabled={!this.validate()}
                     >
                       next
-                 </Button>
+                  </Button>
                   </GridItem>
                 </GridContainer>
               </div>

@@ -30,6 +30,10 @@ class NavPills extends React.Component {
     this.setState({ active: index });
   };
 
+  componentWillReceiveProps(props) {
+    this.setState({ active: props.active })
+  }
+
   render() {
     const {
       classes,
@@ -84,6 +88,7 @@ class NavPills extends React.Component {
     const tabContent = (
       <div className={classes.contentWrapper}>
         <SwipeableViews
+          disabled={true}
           axis={direction === "rtl" ? "x-reverse" : "x"}
           index={this.state.active}
           onChangeIndex={this.handleChangeIndex}
