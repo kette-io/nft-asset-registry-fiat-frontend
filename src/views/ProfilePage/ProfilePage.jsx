@@ -212,7 +212,7 @@ class ProfilePage extends React.Component {
                         {
                           tabButton: "Check out",
                           tabContent: (
-                            <GridContainer justify="flex-end">
+                            <GridContainer justify="center">
                               <GridItem xs={12} sm={12} md={10}>
                                 <TextField
                                   label="Card holder's name"
