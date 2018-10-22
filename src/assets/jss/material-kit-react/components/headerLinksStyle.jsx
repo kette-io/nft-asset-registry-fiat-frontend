@@ -111,7 +111,12 @@ const headerLinksStyle = theme => ({
   ...tooltip,
   marginRight5: {
     marginRight: "5px"
-  }
+  },
+  formControl: {
+    margin: "0 !important",
+    paddingTop: "10px",
+    paddingLeft :"18px"
+  },
 });
 
 export default headerLinksStyle;

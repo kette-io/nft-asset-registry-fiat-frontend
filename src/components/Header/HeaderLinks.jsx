@@ -8,6 +8,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
+import Search from "@material-ui/icons/Search";
+import Button from "components/CustomButtons/Button.jsx";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
+
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
 function HeaderLinks({ ...props }) {
@@ -28,6 +32,26 @@ function HeaderLinks({ ...props }) {
         <Link to="/" className={classes.navLink}>
           Your Bikes
         </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <CustomInput
+          white
+          inputRootCustomClasses={classes.inputRootCustomClasses}
+          formControlProps={{
+            className: classes.formControl
+          }}
+          inputProps={{
+            placeholder: "Search",
+            inputProps: {
+              "aria-label": "Search",
+              className: classes.searchInput
+            }
+          }}
+        />
+        <Button justIcon round color="white"
+          onClick={(e) => console.log("search clicked")}>
+          <Search className={classes.searchIcon} />
+        </Button>
       </ListItem>
     </List>
   );
