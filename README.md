@@ -28,7 +28,7 @@ You now have the option of printing a paper wallet, saving your private key, or 
 
 ## Run
         npm install
-        npm run dev
+        npm start
 
 ## Live demo (test-net)
 

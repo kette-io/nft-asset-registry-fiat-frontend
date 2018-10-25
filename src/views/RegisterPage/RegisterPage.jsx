@@ -13,7 +13,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
+import registerPageStyle from "assets/jss/material-kit-react/views/registerPage.jsx";
 import ethUtil from "ethereumjs-util";
 
 import TextField from '@material-ui/core/TextField';
@@ -24,7 +24,7 @@ import registrationService from './services/registrationService.js'
 import ipfsService from './services/ipfsService.js'
 import priceService from './services/priceService.js'
 
-class ProfilePage extends React.Component {
+class RegisterPage extends React.Component {
 
   constructor(props) {
     super(props)
@@ -293,4 +293,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default injectStripe(withStyles(profilePageStyle)(ProfilePage));
+export default injectStripe(withStyles(registerPageStyle)(RegisterPage));
