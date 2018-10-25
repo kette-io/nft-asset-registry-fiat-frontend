@@ -10,7 +10,6 @@ import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
 import registerPageStyle from "assets/jss/material-kit-react/views/registerPage.jsx";
@@ -23,6 +22,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import registrationService from './services/registrationService.js'
 import ipfsService from './services/ipfsService.js'
 import priceService from './services/priceService.js'
+
 
 class RegisterPage extends React.Component {
 
@@ -138,7 +138,6 @@ class RegisterPage extends React.Component {
         <Header
           color="white"
           brand="KETTE asset registry"
-          rightLinks={<HeaderLinks />}
           {...rest}
         />
         <div className={classes.test}>

@@ -15,7 +15,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
 function HeaderLinks({ ...props }) {
-  const { classes } = props;
+  const { classes, searchClick } = props;
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -49,7 +49,7 @@ function HeaderLinks({ ...props }) {
           }}
         />
         <Button justIcon round color="white"
-          onClick={(e) => console.log("search clicked")}>
+          onClick={searchClick}>
           <Search className={classes.searchIcon} />
         </Button>
       </ListItem>

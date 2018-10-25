@@ -14,7 +14,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
-import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import SectionBasics from "./Sections/SectionBasics.jsx";
 import SectionNavbars from "./Sections/SectionNavbars.jsx";
 import SectionTabs from "./Sections/SectionTabs.jsx";
@@ -37,7 +36,6 @@ class Components extends React.Component {
       <div>
         <Header
           brand="Material Kit React"
-          rightLinks={<HeaderLinks />}
           fixed
           color="transparent"
           changeColorOnScroll={{

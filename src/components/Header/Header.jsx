@@ -15,6 +15,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Menu from "@material-ui/icons/Menu";
 // core components
 import headerStyle from "assets/jss/material-kit-react/components/headerStyle.jsx";
+import HeaderLinks from "components/Header/HeaderLinks.jsx";
 
 class Header extends React.Component {
   constructor(props) {
@@ -61,7 +62,6 @@ class Header extends React.Component {
     const {
       classes,
       color,
-      rightLinks,
       leftLinks,
       brand,
       fixed,
@@ -74,6 +74,10 @@ class Header extends React.Component {
       [classes.fixed]: fixed
     });
     const brandComponent = <Button className={classes.title}>{brand}</Button>;
+    const rightLinks = <HeaderLinks searchClick={(e) => this.context.router.history.push({
+      pathname: '/searchResult-page',
+      result: { detail: "very much detail" }
+    })} />
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
@@ -84,8 +88,8 @@ class Header extends React.Component {
                 {leftLinks}
               </Hidden>
             ) : (
-              brandComponent
-            )}
+                brandComponent
+              )}
           </div>
           <Hidden smDown implementation="css">
             {rightLinks}
@@ -118,6 +122,10 @@ class Header extends React.Component {
         </Hidden>
       </AppBar>
     );
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
   }
 }
 
