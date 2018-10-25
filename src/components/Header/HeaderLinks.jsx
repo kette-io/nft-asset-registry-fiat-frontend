@@ -19,18 +19,18 @@ function HeaderLinks({ ...props }) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Link to="/landing-page" className={classes.navLink}>
+        <Link to="/" className={classes.navLink}>
           Homepage
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/profile-page" className={classes.navLink}>
+        <Link to="/register-page" className={classes.navLink}>
           Register
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/" className={classes.navLink}>
-          Your Bikes
+        <Link to="/all-components" className={classes.navLink}>
+          Templates
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>

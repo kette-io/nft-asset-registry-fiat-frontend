@@ -28,38 +28,11 @@ function Footer({ ...props }) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/"
+                href="https://www.kette.io/"
                 className={classes.block}
                 target="_blank"
               >
-                Creative Tim
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/presentation"
-                className={classes.block}
-                target="_blank"
-              >
-                About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="http://blog.creative-tim.com/"
-                className={classes.block}
-                target="_blank"
-              >
-                Blog
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/license"
-                className={classes.block}
-                target="_blank"
-              >
-                Licenses
+                KETTE GmbH
               </a>
             </ListItem>
           </List>
@@ -68,13 +41,13 @@ function Footer({ ...props }) {
           &copy; {1900 + new Date().getYear()} , made with{" "}
           <Favorite className={classes.icon} /> by{" "}
           <a
-            href="https://www.creative-tim.com"
+            href="https://www.kette.io"
             className={aClasses}
             target="_blank"
           >
-            Creative Tim
+            KETTE
           </a>{" "}
-          for a better web.
+          for a decentralized web.
         </div>
       </div>
     </footer>

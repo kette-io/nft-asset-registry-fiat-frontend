@@ -39,7 +39,7 @@ class LandingPage extends React.Component {
                   that you are the owner of your most valuable asset.
                 </h4>
                 <br />
-                <Link to={"/profile-page"} className={classes.link}>
+                <Link to={"/register-page"} className={classes.link}>
                   <Button color="danger" size="lg" round>
                     Register now.
                 </Button>
