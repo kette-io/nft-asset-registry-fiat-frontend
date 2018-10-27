@@ -16,6 +16,7 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import headerStyle from "assets/jss/material-kit-react/components/headerStyle.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
+import getBikeService from "services/getBikeService.js"
 
 class Header extends React.Component {
   constructor(props) {
@@ -25,7 +26,17 @@ class Header extends React.Component {
     };
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
     this.headerColorChange = this.headerColorChange.bind(this);
+    this.searchClicked = this.searchClicked.bind(this);
   }
+
+  async searchClicked(e) {
+    const result = await getBikeService(this.state.searchValue);
+    this.context.router.history.push({
+      pathname: '/searchResult-page',
+      result: result
+    })
+  }
+
   handleDrawerToggle() {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   }
@@ -74,10 +85,7 @@ class Header extends React.Component {
       [classes.fixed]: fixed
     });
     const brandComponent = <Button className={classes.title}>{brand}</Button>;
-    const rightLinks = <HeaderLinks searchClick={(e) => this.context.router.history.push({
-      pathname: '/searchResult-page',
-      result: { detail: "very much detail" }
-    })} />
+    const rightLinks = <HeaderLinks searchClick={this.searchClicked} searchValueChanged={(e) => this.setState({ searchValue: e.target.value })} />
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>

@@ -19,9 +19,9 @@ import TextField from '@material-ui/core/TextField';
 import { CardElement, injectStripe } from "react-stripe-elements";
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-import registrationService from './services/registrationService.js'
-import ipfsService from './services/ipfsService.js'
-import priceService from './services/priceService.js'
+import registrationService from 'services/registrationService.js'
+import ipfsService from 'services/ipfsService.js'
+import priceService from 'services/priceService.js'
 
 
 class RegisterPage extends React.Component {

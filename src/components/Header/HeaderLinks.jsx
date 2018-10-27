@@ -15,7 +15,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
 function HeaderLinks({ ...props }) {
-  const { classes, searchClick } = props;
+  const { classes, searchClick, searchValueChanged } = props;
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -41,6 +41,7 @@ function HeaderLinks({ ...props }) {
             className: classes.formControl
           }}
           inputProps={{
+            onChange: searchValueChanged,
             placeholder: "Search",
             inputProps: {
               "aria-label": "Search",

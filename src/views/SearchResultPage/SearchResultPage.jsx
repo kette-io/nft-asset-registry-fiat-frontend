@@ -17,7 +17,7 @@ import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.js
 
 class SearchResultPage extends React.Component {
   render() {
-    console.log(this.props.location.result.detail)
+    console.log(this.props.location.result)
     const { classes, ...rest } = this.props;
     return (
       <div>
