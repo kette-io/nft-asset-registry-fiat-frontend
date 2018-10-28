@@ -140,9 +140,7 @@ class RegisterPage extends React.Component {
           brand="KETTE asset registry"
           {...rest}
         />
-        <div className={classes.test}>
-          <div className={classNames(classes.main)}>
-            <div>
+          <div className={classes.main}>
               <div className={classes.container}>
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
@@ -284,8 +282,6 @@ class RegisterPage extends React.Component {
                 </GridContainer>
               </div>
             </div>
-          </div>
-        </div>
         <Footer />
       </div>
     );

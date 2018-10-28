@@ -30,7 +30,8 @@ class Header extends React.Component {
   }
 
   async searchClicked(e) {
-    const result = await getBikeService(this.state.searchValue);
+    const bike = await getBikeService(this.state.searchValue);
+    const result = bike === "not found" ? { uniqueId: this.state.searchValue, notFound : true} : { uniqueId: this.state.searchValue, ...bike }
     this.context.router.history.push({
       pathname: '/searchResult-page',
       result: result
