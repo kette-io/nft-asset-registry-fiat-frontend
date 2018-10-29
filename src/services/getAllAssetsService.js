@@ -3,7 +3,7 @@ import axios from 'axios'
 export default async function () {
     
     const onlineTestUrl = "https://us-central1-kette-fiat-registry.cloudfunctions.net/allAssets";
-    const localUrl = "http://localhost:5000/kette-fiat-registry/us-central1/allAssets?offline=true"
+    //const localUrl = "http://localhost:5000/kette-fiat-registry/us-central1/allAssets?offline=true"
     
     const response = await axios.get(onlineTestUrl);
  

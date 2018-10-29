@@ -16,6 +16,7 @@ import headerLinksStyle from "assets/jss/material-kit-react/components/headerLin
 
 function HeaderLinks({ ...props }) {
   const { classes, searchClick, searchValueChanged } = props;
+  console.log(classes)
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -29,11 +30,6 @@ function HeaderLinks({ ...props }) {
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/all-components" className={classes.navLink}>
-          Templates
-        </Link>
-      </ListItem>
-      <ListItem className={classes.listItem}>
         <CustomInput
           white
           inputRootCustomClasses={classes.inputRootCustomClasses}
@@ -42,7 +38,7 @@ function HeaderLinks({ ...props }) {
           }}
           inputProps={{
             onChange: searchValueChanged,
-            placeholder: "Search",
+            placeholder: "Frame number",
             inputProps: {
               "aria-label": "Search",
               className: classes.searchInput
