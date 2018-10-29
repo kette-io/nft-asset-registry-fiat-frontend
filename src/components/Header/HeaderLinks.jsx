@@ -15,8 +15,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
 function HeaderLinks({ ...props }) {
-  const { classes, searchClick, searchValueChanged } = props;
-  console.log(classes)
+  const { classes, searchClick, searchValueChanged, whiteFont } = props;
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -31,7 +30,7 @@ function HeaderLinks({ ...props }) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <CustomInput
-          white
+          white={whiteFont}
           inputRootCustomClasses={classes.inputRootCustomClasses}
           formControlProps={{
             className: classes.formControl

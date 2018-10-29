@@ -3,7 +3,6 @@ import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
-
 // core components
 import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -11,7 +10,7 @@ import ImgMediaCard from "components/ImageCard/ImageCard.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 
-import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
+import searchResultPageStyle from "assets/jss/material-kit-react/views/searchResultPage.jsx";
 
 class SearchResultPage extends React.Component {
   render() {
@@ -19,20 +18,22 @@ class SearchResultPage extends React.Component {
     if (!this.props.location.result) {
       return (
         <div>
-        <Header
-          color="dark"
-          brand="KETTE asset registry"
-          {...rest}
-        />
-        <div className={classes.main}>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={6} md={3}>
-            <ImgMediaCard uniqueId="MonkeySeeMonkeyDo" imagePath={"https://cdn.vox-cdn.com/thumbor/Or0rhkc1ciDqjrKv73IEXGHtna0=/0x0:666x444/1200x800/filters:focal(273x193:379x299)/cdn.vox-cdn.com/uploads/chorus_image/image/59384673/Macaca_nigra_self-portrait__rotated_and_cropped_.0.jpg"} description="ipasdasknd a,ln dlkasjd lkasjd lkasjdlkasj"></ImgMediaCard>
-            </GridItem>
-          </GridContainer>
-        </div>
-        <Footer />
-      </div >)
+          <Header
+            color="dark"
+            brand="KETTE asset registry"
+            {...rest}
+          />
+          <div className={classes.main}>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={6} md={3}>
+                <div className={classes.mainRaised}>
+                  <ImgMediaCard uniqueId="MonkeySeeMonkeyDo" imagePath={"https://cdn.vox-cdn.com/thumbor/Or0rhkc1ciDqjrKv73IEXGHtna0=/0x0:666x444/1200x800/filters:focal(273x193:379x299)/cdn.vox-cdn.com/uploads/chorus_image/image/59384673/Macaca_nigra_self-portrait__rotated_and_cropped_.0.jpg"} description="ipasdasknd a,ln dlkasjd lkasjd lkasjdlkasj"></ImgMediaCard>
+                </div>
+              </GridItem>
+            </GridContainer>
+          </div>
+          <Footer />
+        </div >)
     }
 
     let content;
@@ -54,7 +55,9 @@ class SearchResultPage extends React.Component {
         <div className={classes.main}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={6} md={3}>
-              {content}
+              <div className={classes.mainRaised}>
+                {content}
+              </div>
             </GridItem>
           </GridContainer>
         </div>
@@ -64,4 +67,4 @@ class SearchResultPage extends React.Component {
   }
 }
 
-export default withStyles(landingPageStyle)(SearchResultPage);
+export default withStyles(searchResultPageStyle)(SearchResultPage);

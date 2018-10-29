@@ -86,7 +86,7 @@ class Header extends React.Component {
       [classes.fixed]: fixed
     });
     const brandComponent = <Button className={classes.title}>{brand}</Button>;
-    const rightLinks = <HeaderLinks searchClick={this.searchClicked} searchValueChanged={(e) => this.setState({ searchValue: e.target.value })} />
+    const rightLinks = <HeaderLinks whiteFont={color !== "white"} searchClick={this.searchClicked} searchValueChanged={(e) => this.setState({ searchValue: e.target.value })} />
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
