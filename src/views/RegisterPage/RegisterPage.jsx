@@ -140,148 +140,157 @@ class RegisterPage extends React.Component {
           brand="KETTE bicycle registry"
           {...rest}
         />
-          <div className={classes.main}>
-              <div className={classes.container}>
-                <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                    <NavPills
-                      active={this.state.activeTab}
-                      color="danger"
-                      alignCenter
-                      tabs={[
-                        {
-                          tabButton: "Bike information",
-                          tabContent: (
-                            <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={10}>
-                                <TextField
-                                  label="Frame Number"
-                                  className={classes.textField}
-                                  value={this.state.uniqueId}
-                                  fullWidth
-                                  onChange={this.handleChange('uniqueId')}
-                                  margin="normal"
-                                  variant="outlined"
-                                />
-                                <TextField
-                                  label="Description"
-                                  className={classes.textField}
-                                  value={this.state.description}
-                                  fullWidth
-                                  onChange={this.handleChange('description')}
-                                  margin="normal"
-                                  variant="outlined"
-                                />
-                                <h4 align="left">Image</h4>
-                                <div align="left">
-                                  <input
-                                    type="file"
-                                    className="input"
-                                    onChange={this.onImageChange.bind(this)} />
-                                </div>
-                                <img
-                                  alt="..."
-                                  src={this.state.image}
-                                  className={navImageClasses}
-                                />
-                              </GridItem>
-                            </GridContainer>
-                          )
-                        },
-                        {
-                          tabButton: "Ethereum Address",
-                          tabContent: (
-                            <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={10}>
-                                <TextField
-                                  label="Ethereum Address"
-                                  className={classes.textField}
-                                  value={this.state.ethereumAddress}
-                                  fullWidth
-                                  onChange={this.handleChange('ethereumAddress')}
-                                  margin="normal"
-                                  variant="outlined"
-                                />
-                              </GridItem>
-                            </GridContainer>
-                          )
-                        },
-                        {
-                          tabButton: "Check out",
-                          tabContent: (
-                            <GridContainer justify="center">
-                              <GridItem xs={12} sm={12} md={10}>
-                                <TextField
-                                  label="Card holder's name"
-                                  className={classes.textField}
-                                  value={this.state.cardHolderName}
-                                  fullWidth
-                                  onChange={this.handleChange('cardHolderName')}
-                                  margin="normal"
-                                  variant="outlined"
-                                />
-                                <div style={{ padding: '15px', border: '1px solid darkgrey', borderRadius: '3px' }}>
-                                  <CardElement
-                                    onChange={(e) => this.setState({ cardComplete: e.complete })}
-                                    style={{
-                                      base: {
-                                        fontSize: '18px',
-                                      }
-                                    }}
-                                  /></div>
-                                <TextField
-                                  id="filled-adornment-amount"
-                                  className={classNames(classes.margin, classes.textField)}
-                                  variant="filled"
-                                  margin="normal"
-                                  label="Price"
-                                  value={this.state.price}
-                                  InputProps={{
-                                    startAdornment: (
-                                      <InputAdornment variant="filled" position="start">
-                                        €
+        <div className={classes.main}>
+          <div className={classes.container}>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+                <NavPills
+                  active={this.state.activeTab}
+                  color="danger"
+                  alignCenter
+                  tabs={[
+                    {
+                      tabButton: "Bike information",
+                      tabContent: (
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={10}>
+                            <TextField
+                              label="Frame Number"
+                              className={classes.textField}
+                              value={this.state.uniqueId}
+                              fullWidth
+                              onChange={this.handleChange('uniqueId')}
+                              margin="normal"
+                              variant="outlined"
+                            />
+                            <TextField
+                              label="Description"
+                              className={classes.textField}
+                              value={this.state.description}
+                              fullWidth
+                              onChange={this.handleChange('description')}
+                              margin="normal"
+                              variant="outlined"
+                            />
+                            <h4 align="left">Image</h4>
+                            <div align="left">
+                              <input
+                                id="myInput"
+                                type="file"
+                                ref={(ref) => this.upload = ref}
+                                style={{ display: 'none' }}
+                                onChange={this.onImageChange.bind(this)}
+                              />
+                              <Button
+                                onClick={(e) => this.upload.click()}
+                              >
+                                Select Image
+                              </Button>
+                            </div>
+                            {this.state.image ? <img
+                              alt="..."
+                              src={this.state.image}
+                              className={navImageClasses}
+                            /> : 
+                            <div></div>}
+                          </GridItem>
+                        </GridContainer>
+                      )
+                    },
+                    {
+                      tabButton: "Ethereum Address",
+                      tabContent: (
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={10}>
+                            <TextField
+                              label="Ethereum Address"
+                              className={classes.textField}
+                              value={this.state.ethereumAddress}
+                              fullWidth
+                              onChange={this.handleChange('ethereumAddress')}
+                              margin="normal"
+                              variant="outlined"
+                            />
+                          </GridItem>
+                        </GridContainer>
+                      )
+                    },
+                    {
+                      tabButton: "Check out",
+                      tabContent: (
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={10}>
+                            <TextField
+                              label="Card holder's name"
+                              className={classes.textField}
+                              value={this.state.cardHolderName}
+                              fullWidth
+                              onChange={this.handleChange('cardHolderName')}
+                              margin="normal"
+                              variant="outlined"
+                            />
+                            <div style={{ padding: '15px', border: '1px solid darkgrey', borderRadius: '3px' }}>
+                              <CardElement
+                                onChange={(e) => this.setState({ cardComplete: e.complete })}
+                                style={{
+                                  base: {
+                                    fontSize: '18px',
+                                  }
+                                }}
+                              /></div>
+                            <TextField
+                              id="filled-adornment-amount"
+                              className={classNames(classes.margin, classes.textField)}
+                              variant="filled"
+                              margin="normal"
+                              label="Price"
+                              value={this.state.price}
+                              InputProps={{
+                                startAdornment: (
+                                  <InputAdornment variant="filled" position="start">
+                                    €
                                       </InputAdornment>
-                                    ),
-                                    readOnly: true
-                                  }}
-                                />
-                                <TextField
-                                  label="temporary secret"
-                                  className={classes.textField}
-                                  value={this.state.ketteSecret}
-                                  fullWidth
-                                  onChange={this.handleChange('ketteSecret')}
-                                  margin="normal"
-                                  variant="outlined"
-                                />
+                                ),
+                                readOnly: true
+                              }}
+                            />
+                            <TextField
+                              label="temporary secret"
+                              className={classes.textField}
+                              value={this.state.ketteSecret}
+                              fullWidth
+                              onChange={this.handleChange('ketteSecret')}
+                              margin="normal"
+                              variant="outlined"
+                            />
 
-                              </GridItem>
-                            </GridContainer>
-                          )
-                        }
-                      ]}
-                    />
-                  </GridItem>
-                </GridContainer>
-                <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                    <Button
-                      onClick={this.onPreviousClicked.bind(this)}
-                      color="danger"
-                    >
-                      prev.
+                          </GridItem>
+                        </GridContainer>
+                      )
+                    }
+                  ]}
+                />
+              </GridItem>
+            </GridContainer>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+                <Button
+                  onClick={this.onPreviousClicked.bind(this)}
+                  color="danger"
+                >
+                  prev.
                    </Button>
-                    <Button
-                      onClick={this.onNextClicked.bind(this)}
-                      color="danger"
-                      disabled={!this.validate()}
-                    >
-                      next
+                <Button
+                  onClick={this.onNextClicked.bind(this)}
+                  color="danger"
+                  disabled={!this.validate()}
+                >
+                  next
                   </Button>
-                  </GridItem>
-                </GridContainer>
-              </div>
-            </div>
+              </GridItem>
+            </GridContainer>
+          </div>
+        </div>
         <Footer />
       </div>
     );
