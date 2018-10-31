@@ -137,7 +137,7 @@ class RegisterPage extends React.Component {
       <div>
         <Header
           color="white"
-          brand="KETTE asset registry"
+          brand="KETTE bicycle registry"
           {...rest}
         />
           <div className={classes.main}>

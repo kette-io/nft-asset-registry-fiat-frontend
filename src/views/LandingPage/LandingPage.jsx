@@ -23,7 +23,7 @@ class LandingPage extends React.Component {
       <div>
         <Header
           color="dark"
-          brand="KETTE asset registry"
+          brand="KETTE bicycle registry"
           {...rest}
         />
         <Parallax filter image={require("assets/img/bike-bg.jpg")}>
@@ -32,7 +32,7 @@ class LandingPage extends React.Component {
               <GridItem xs={12} sm={12} md={6}>
                 <h1 className={classes.title}>KETTE bicycle registry.</h1>
                 <h4>
-                  KETTE is the <strong> global decentralized asset registry</strong>.
+                  KETTE is the <strong> global decentralized bicycle registry</strong>.
                   Register your bike. From now on you can always proof
                   that you are the owner of your most valuable asset.
                 </h4>

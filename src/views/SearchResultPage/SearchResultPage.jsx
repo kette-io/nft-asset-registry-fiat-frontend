@@ -20,7 +20,7 @@ class SearchResultPage extends React.Component {
         <div>
           <Header
             color="dark"
-            brand="KETTE asset registry"
+            brand="KETTE bicycle registry"
             {...rest}
           />
           <div className={classes.main}>
@@ -49,7 +49,7 @@ class SearchResultPage extends React.Component {
       <div>
         <Header
           color="dark"
-          brand="KETTE asset registry"
+          brand="KETTE bicycle registry"
           {...rest}
         />
         <div className={classes.main}>

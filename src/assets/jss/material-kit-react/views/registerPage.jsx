@@ -2,8 +2,6 @@ import { container, title } from "assets/jss/material-kit-react.jsx";
 
 import imagesStyle from "assets/jss/material-kit-react/imagesStyles.jsx";
 
-import backgroundImage from "assets/img/bike-bg.jpg"
-
 const profilePageStyle = {
   container,
   profile: {
@@ -58,9 +56,6 @@ const profilePageStyle = {
   navWrapper: {
     margin: "20px auto 50px auto",
     textAlign: "center"
-  },
-  test :{
-    backgroundImage: `url(${backgroundImage})`
   }
 };
 
