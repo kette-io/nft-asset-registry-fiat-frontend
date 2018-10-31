@@ -172,27 +172,25 @@ class RegisterPage extends React.Component {
                               margin="normal"
                               variant="outlined"
                             />
-                            <h4 align="left">Image</h4>
-                            <div align="left">
-                              <input
-                                id="myInput"
-                                type="file"
-                                ref={(ref) => this.upload = ref}
-                                style={{ display: 'none' }}
-                                onChange={this.onImageChange.bind(this)}
-                              />
-                              <Button
-                                onClick={(e) => this.upload.click()}
-                              >
-                                Select Image
+                            <input
+                              id="myInput"
+                              type="file"
+                              ref={(ref) => this.upload = ref}
+                              style={{ display: 'none' }}
+                              onChange={this.onImageChange.bind(this)}
+                            />
+                            <Button
+                              style={{ align: "left", margin: "20px" }}
+                              onClick={(e) => this.upload.click()}
+                            >
+                              Select Image
                               </Button>
-                            </div>
                             {this.state.image ? <img
                               alt="..."
                               src={this.state.image}
                               className={navImageClasses}
-                            /> : 
-                            <div></div>}
+                            /> :
+                              <div></div>}
                           </GridItem>
                         </GridContainer>
                       )
@@ -211,6 +209,13 @@ class RegisterPage extends React.Component {
                               margin="normal"
                               variant="outlined"
                             />
+                            <Button 
+                               color="primary"
+                               href="https://www.myetherwallet.com"
+                               target="_blank"
+                               >
+                              Get Address
+                            </Button>
                           </GridItem>
                         </GridContainer>
                       )
