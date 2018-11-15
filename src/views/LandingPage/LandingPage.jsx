@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -12,41 +13,45 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
+import Features from "components/Features/Features.jsx";
 
 import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.jsx";
-
 
 class LandingPage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        <Header
-          color="dark"
-          brand="KETTE bicycle registry"
-          {...rest}
-        />
-        <Parallax filter image={require("assets/img/bike-bg.jpg")}>
+        <Header color="dark" brand="KETTE bicycle registry" {...rest} />
+        <Parallax
+          filter
+          image={require("assets/img/bike-bg.jpg")}
+        >
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
                 <h1 className={classes.title}>KETTE bicycle registry.</h1>
                 <h4>
-                  KETTE is the <strong> global decentralized bicycle registry</strong>.
-                  Register your bike. From now on you can always proof
-                  that you are the owner of your most valuable asset.
+                  KETTE is the{" "}
+                  <strong> global decentralized bicycle registry</strong>.
+                  Register your bike. From now on you can always proof that you
+                  are the owner of your most valuable asset.
                 </h4>
                 <br />
                 <Link to={"/register-page"} className={classes.link}>
                   <Button color="danger" size="lg" round>
                     Register now.
-                </Button>
+                  </Button>
                 </Link>
               </GridItem>
             </GridContainer>
           </div>
         </Parallax>
-        
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classes.container}>
+            <Features divId="services" />
+          </div>
+        </div>
         <Footer />
       </div>
     );
