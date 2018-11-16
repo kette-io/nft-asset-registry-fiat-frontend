@@ -64,7 +64,7 @@ class Features extends React.Component {
         </GridContainer>
         <div>
           <GridContainer>
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem xs={12} sm={4} md={4}>
               <InfoArea
                 title="Deter thieves!"
                 description="Through clear labeling and assignability of bicycle and owner."
@@ -73,7 +73,7 @@ class Features extends React.Component {
                 vertical
               />
             </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem xs={12} sm={4} md={4}>
               <InfoArea
                 title="Never Search Again"
                 description="All important documents for your bike in one place (warranty, invoice)."
@@ -82,7 +82,7 @@ class Features extends React.Component {
                 vertical
               />
             </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
+            <GridItem xs={12} sm={4} md={4}>
               <InfoArea
                 title="Resale value"
                 description="Increasing value through clear service and bicycle history"
@@ -101,7 +101,7 @@ class Features extends React.Component {
           </GridContainer>
           <div>
             <GridContainer>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={4} md={4}>
                 <InfoArea
                   title="1. Prepare your frame number"
                   description="Keep your frame number and documents such as invoices ready."
@@ -110,7 +110,7 @@ class Features extends React.Component {
                   vertical
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={4} md={4}>
                 <InfoArea
                   title="2. Register directly via the app"
                   description="All important documents for your bike in one place (warranty, invoice)."
@@ -119,7 +119,7 @@ class Features extends React.Component {
                   vertical
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={4} md={4}>
                 <InfoArea
                   title="3. Received digital bike pass"
                   description="The decentralized database and blockchain technology helps to store all data consistently and allows a quick access of the bike owner."

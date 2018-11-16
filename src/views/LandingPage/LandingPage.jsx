@@ -22,25 +22,35 @@ class LandingPage extends React.Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        <Header color="dark" brand="KETTE bicycle registry" {...rest} />
+        <Header 
+          color="transparent"
+          brand="KETTE bicycle registry"
+          fixed
+          changeColorOnScroll={{
+            height: 300,
+            color: "dark"
+          }}
+          {...rest} 
+        />
         <Parallax
           filter
-          image={require("assets/img/bike-bg.jpg")}
+          image={require("assets/img/bg-1-default.jpg")}
         >
           <div className={classes.container}>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
                 <h1 className={classes.title}>KETTE bicycle registry.</h1>
                 <h4>
-                  KETTE is the{" "}
+                  KETTE is the {" "}
                   <strong> global decentralized bicycle registry</strong>.
                   Register your bike. From now on you can always proof that you
                   are the owner of your most valuable asset.
                 </h4>
                 <br />
                 <Link to={"/register-page"} className={classes.link}>
-                  <Button color="danger" size="lg" round>
-                    Register now.
+                  <Button color="danger" size="lg" round target="_blank"
+                  rel="noopener noreferrer">
+                    <i class="fas fa-arrow-circle-right"></i>Register now.
                   </Button>
                 </Link>
               </GridItem>
