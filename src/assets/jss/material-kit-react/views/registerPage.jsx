@@ -13,6 +13,10 @@ const profilePageStyle = {
       transform: "translate3d(0, -50%, 0)"
     }
   },
+  parallax: {
+    height: "90vh",
+    overflow: "hidden"
+  },
   description: {
     margin: "1.071rem auto 0",
     maxWidth: "600px",

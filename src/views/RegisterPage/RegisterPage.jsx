@@ -142,8 +142,8 @@ class RegisterPage extends React.Component {
         />
         <div className={classes.main}>
           <div className={classes.container}>
-            <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={10} className={classes.navWrapper}>
                 <NavPills
                   active={this.state.activeTab}
                   color="danger"
