@@ -25,7 +25,8 @@ function InfoArea({ ...props }) {
     [className]: className !== undefined
   });
   let icon = null;
-  switch (typeof props.icon) {
+  const propIcon = props.icon;
+  switch (typeof propIcon) {
     case "string":
       icon = <Icon className={iconClasses}>{props.icon}</Icon>;
       break;
